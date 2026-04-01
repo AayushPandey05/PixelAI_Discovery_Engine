@@ -140,7 +140,6 @@ const LoginModal = ({ isOpen, onClose, onLogin }) => {
             <div className="flex-grow border-t border-white/10"></div>
           </div>
 
-          {/* This is the ONLY part I changed: Integrating the official GoogleLogin component */}
           <div className="flex justify-center w-full">
             <GoogleLogin
               onSuccess={handleGoogleSuccess}
@@ -151,6 +150,9 @@ const LoginModal = ({ isOpen, onClose, onLogin }) => {
               size="large"
               logo_alignment="left"
               width="320"
+              // Force account selection and enable One Tap
+              prompt="select_account"
+              useOneTap
             />
           </div>
 
