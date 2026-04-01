@@ -23,10 +23,18 @@ function App() {
   const [showFavorites, setShowFavorites] = useState(false);
   
   // Auth state with persisted localStorage logic
-  const [user, setUser] = useState(() => {
-    const saved = localStorage.getItem('pixelai_user');
-    return saved ? JSON.parse(saved) : null;
-  });
+  const [user, setUser] = useState(null);
+
+  useEffect(() => {
+    const savedUser = localStorage.getItem('user');
+    if (savedUser) {
+      try {
+        setUser(JSON.parse(savedUser));
+      } catch (e) {
+        console.error('Failed to parse user', e);
+      }
+    }
+  }, []);
 
   // Favorites state with persisted localStorage logic
   const [favorites, setFavorites] = useState(() => {
@@ -37,9 +45,9 @@ function App() {
   // Sync state to local storage
   useEffect(() => {
     if (user) {
-      localStorage.setItem('pixelai_user', JSON.stringify(user));
+      localStorage.setItem('user', JSON.stringify(user));
     } else {
-      localStorage.removeItem('pixelai_user');
+      localStorage.removeItem('user');
     }
   }, [user]);
 
