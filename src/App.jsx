@@ -11,6 +11,7 @@ import LoginPage from './components/LoginPage';
 function App() {
   const [images, setImages] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [isFetchingMore, setIsFetchingMore] = useState(false);
   const defaultQueries = [
     'neon futuristic', 'cyberpunk city', 'space exploration', 
     'abstract 3d', 'vaporwave', 'synthwave landscape', 'bioluminescence'
